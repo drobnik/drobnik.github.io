@@ -218,8 +218,11 @@ a.site-title {
 }
 
 .post-list-border{
-  border: 1px solid $text-color;
+  border: 1px solid $grey-color;
 }
+
+
+
 
 .post-list {
   margin-left: 0;
@@ -227,6 +230,8 @@ a.site-title {
   margin: auto;
   width: 90%;
   padding: $spacing-unit * 0.4;
+  padding-left: $spacing-unit * 1.1;
+  padding-right: $spacing-unit * 1.1;
   padding-bottom: $spacing-unit * 0.4;
 
   > li {
@@ -258,7 +263,8 @@ a.post-link {
   font-family: $monospace-font-family;
   color: $white;
   display: block;
-  @include relative-font-size(1.32);
+  letter-spacing: -1px;
+  @include relative-font-size(1.5);
 }
 
 
@@ -267,17 +273,17 @@ a.post-link {
  * Posts
  */
 
- .post {
-   padding-top: $spacing-unit * 0.7;
-   padding-left: $spacing-unit * 1.1;
-   padding-right: $spacing-unit * 1.1;
-   padding-bottom: $spacing-unit * 0.1;
-   top: $spacing-unit * 0.5;
-   border: 1px solid $grey-color;
-  }
+.post {
+  padding-top: $spacing-unit * 0.7;
+  padding-left: $spacing-unit * 1.1;
+  padding-right: $spacing-unit * 1.1;
+  padding-bottom: $spacing-unit * 0.1;
+  top: $spacing-unit * 0.5;
+  border: 1px solid $grey-color;
+}
 
 .post-header {
-  margin-bottom: $spacing-unit;
+  margin-bottom: $spacing-unit * 0.7;
   color: $white;
 }
 

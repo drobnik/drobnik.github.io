@@ -1,6 +1,5 @@
 ---
 layout: default
-ignore-nav: true
 ---
 
 <div class="home">
@@ -27,10 +26,10 @@ ignore-nav: true
         <span class="post-meta">{{ post.date | date: date_format }}</span>
         <div class="top-half-margin">
           <p class="excerpt">
-            {{ post.excerpt | strip_html }}
+            {{ post.excerpt }}
             <a class="more" href="{{ post.url | relative_url }}">➔</a>
+
           </p>
-        </div>
       </li>
       {%- endfor -%}
     </ul>

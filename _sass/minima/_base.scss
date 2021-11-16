@@ -110,7 +110,7 @@ a {
   text-decoration: none;
 
   &:visited {
-    color: darken(desaturate(adjust-hue($pink, -40%), 8%), 12%);
+    color: darken(desaturate(adjust-hue($pink, -50%), 8%), 6%);
   }
 
   &:hover {

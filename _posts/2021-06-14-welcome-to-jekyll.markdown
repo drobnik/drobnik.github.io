@@ -3,7 +3,7 @@ layout: post
 title:  "Testing post"
 date:   2021-06-14 11:22:07 +0100
 categories: post
-tags: ruby-on-rails asm64
+tags: ruby-on-rails asm
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 

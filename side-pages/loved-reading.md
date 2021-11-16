@@ -2,8 +2,6 @@
 layout: page
 title: Favorite reads
 permalink: /loved-reading/
-ignore-nav: true 
-# ^- need to re-define yellow for this one
 ---
 
 There are a couple of posts, articles and papers that I really enjoyed:

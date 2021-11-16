@@ -23,10 +23,10 @@ plugins:
 
 paginate: 5
 
-collections:
-tags:
-  output: true
-  permalink: tags/:path/
+#collections:
+#tags:
+#  output: true
+#  permalink: tags/:path/
 
 jekyll-archives:
   enabled: [year, month]
@@ -38,9 +38,9 @@ jekyll-archives:
     month: month_archive
 
 # Tag pages
-tag_page_layout: tag_page
-tag_page_dir: tag
-tag_permalink_style: pretty
+#tag_page_layout: tag_page
+#tag_page_dir: tag
+#tag_permalink_style: pretty
 
 # Exclude from processing.
 exclude:

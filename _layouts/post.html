@@ -48,11 +48,11 @@ layout: default
     <p>Tags:</p>
     <ul>
       {%- for tag in page.tags -%}
-      {% assign tag_slug = tag | slugify: "raw" %}
+      {% capture tag_name %}{{ tag }}{% endcapture %}
       <li>
         <p>
-          [ <a class="tag-link" href="/tag/{{tag}}" rel="category tag">
-              {{ tag }}
+          [ <a class="tag-link" href="/tag/{{tag_name}}" rel="category tag">
+              {{ tag_name }}
             </a> 
           ]
         </p>
