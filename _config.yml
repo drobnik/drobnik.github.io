@@ -19,12 +19,9 @@ plugins:
   - jekyll-feed
   - jekyll-archives
   - jekyll-redirect-from
+  - jekyll-paginate
 
-pagination:
-  enabled: true
-  per_page: 5
-  sort_reverse: true
-  permalink: '/page/:num/'
+paginate: 5
 
 collections:
 tags:

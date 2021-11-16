@@ -63,3 +63,11 @@ layout: default
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
+
+<div class="rss-subscribe">
+  <p>
+    <a href="{{ 'feed.xml' | relative_url }}">subscribe via <svg class="svg-icon">
+        <use xlink:href="{{ '/assets/minima-social-icons.svg#rss' | relative_url }}"></use>
+      </svg> <span>{{ site.rss | escape }} RSS</span></a>
+  </p>
+</div>
