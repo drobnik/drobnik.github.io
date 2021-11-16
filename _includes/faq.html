@@ -1,0 +1,23 @@
+<h3 id="faq">FAQ</h3>
+
+<ul class="question-dropdowns">
+    {% for question_answer in site.data.faq-content %}
+    <li>
+        <details class="questions">
+            <summary>{{ question_answer.question }}</summary>
+            <div class="answer-wrapper">
+                {{ question_answer.answer }}
+
+                {% if question_answer.image_url %}
+                    <img src="{{site.baseurl}}/{{question_answer.image_url}}" >
+                {% endif %}
+
+                {% if question_answer.postanswer %}
+                    {{ question_answer.postanswer }}
+                {% endif %}
+            </div>
+        </details>
+    </li>
+    {% endfor %}
+</ul>
+

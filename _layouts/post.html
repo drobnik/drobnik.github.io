@@ -1,0 +1,65 @@
+---
+layout: default
+---
+
+<h2 class="post-list-heading">
+  <div class="background">
+    <span>[</span>
+    <span class="title">{{ page.url | split: "/" | last }} </span>
+    <span>]</span>
+  </div>
+</h2>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        <a class="date-link" href="/post/{{ page.date | date: "%Y/%m" }}">{{ page.date | date: date_format }}</a>
+      </time>
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+  <div class="disclaimer" itemprop="articleSection">
+    <p>
+      Rename: If you want to let me know your opinion and discuss this article you can simply 
+      <a href="">email me</a>.
+    </p>
+  </div>
+
+  <ul class="paginator post-links clearfix">
+  {% if page.previous.url %}
+    <li>
+      <a class="newer" href="{{page.previous.url}}"><< {{page.previous.title}}</a>
+    </li>
+  {% endif %}
+  {% if page.next.url %}
+    <li>
+      <a class="older" href="{{page.next.url}}">{{page.next.title}} >> </a>
+    </li>
+  {% endif %}
+  </ul>
+
+  <div class="tags">
+    <p>Tags:</p>
+    <ul>
+      {%- for tag in page.tags -%}
+      {% assign tag_slug = tag | slugify: "raw" %}
+      <li>
+        <p>
+          [ <a class="tag-link" href="/tag/{{tag}}" rel="category tag">
+              {{ tag }}
+            </a> 
+          ]
+        </p>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>

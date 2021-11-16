@@ -1,0 +1,89 @@
+// TOKENS REFERENCE:
+// https://github.com/rouge-ruby/rouge/wiki/List-of-tokens
+
+/**
+ * Syntax highlighting variables
+ */
+
+ $comments-color: rgb(133, 123, 130);
+ $pre-proc-color: rgb(158, 146, 155);
+
+// Heavily inspired by Tomorrow Night theme
+ $purple: #cf92e4;
+ $orange: #ec9c62;
+ $blue: #81a2be;
+ $code-color: #c5c8c6;
+ $red: #cc6666;
+ $green: #30974a;
+
+
+/**
+ * Syntax highlighting styles
+ */
+.highlight {
+  background: darken($background-color, 4%);
+  color: $code-color;
+  @extend %vertical-rhythm;
+
+  .highlighter-rouge & {
+    background: #eef;
+  }
+
+  // Comments
+  .c     { color: $comments-color; font-style: italic } // Comment
+  .c1    { color: $comments-color; font-style: italic } // Comment.Single
+  .cp    { color: $pre-proc-color; } // Comment.Preproc
+  .cs    { color: $pre-proc-color;  font-style: italic } // Comment.Special
+  .cm    { color: $comments-color; font-style: italic } // Comment.Multiline
+
+  // Main definitions
+  .o     { font-weight: bold } // Operator
+  .ow    { font-weight: bold } // Operator.Word
+  .k     { color: $purple } // Keyword
+  .kt    { color: $orange } // Keyword.Type
+  .nf    { color: $blue } // Name.Function
+  .nc    { color: $blue } // Name.Class
+  .na    { color: $blue } // Name.Attribute
+  .nv    { color:$blue } // Name.Variable
+
+  // Strings
+  .s     { color: $orange } // Literal.String
+  .sb    { color: $orange } // Literal.String.Backtick
+  .sc    { color: $orange } // Literal.String.Char
+  .s1    { color: $orange } // Literal.String
+  .s2    { color: $orange } // Literal.String.Double
+  .se    { color: $orange } // Literal.String.Escape
+  .sh    { color: $orange } // Literal.String.Heredoc
+  .si    { color: $orange } // Literal.String.Interpol
+  .sx    { color: $orange } // Literal.String.Other
+  .sr    { color: $green } // Literal.String.Regex
+  .s1    { color: $orange } // Literal.String.Single
+  .ss    { color: $orange } // Literal.String.Symbol
+
+  // Constants
+  .no    { color: $red } // Name.Constant
+  .mi    { color: $orange } // Literal.Number.Integer
+  .mf    { color: $orange } // Literal.Number.Float
+  .mh    { color: $orange } // Literal.Number.Hex
+  .m     { color: $orange }
+
+  // Keywords
+  .kc    { font-weight: bold } // Keyword.Constant
+  .kd    { font-weight: bold } // Keyword.Declaration
+  .kp    { font-weight: bold } // Keyword.Pseudo
+  .kr    { font-weight: bold } // Keyword.Reserved
+
+  // Console/Generic highlighter
+  .gp    { color: $white } // Generic.Prompt
+  .gs    { font-weight: bold } // Generic.Strong
+
+  // Miscellaneous
+  .err   { color: #a61717; background-color: #e3d2d2 } // Lexer Error
+  .gr    { color: #a00 } // Generic.Error ??
+  .w     { color: #bbb } // Text.Whitespace
+  .ge    { font-style: italic } // Generic.Emph
+
+  // HTML
+  .ni    { color: $red } // Name.Entity -> HTML tokens
+  .nt    { color: $blue } // Name.Tag
+}

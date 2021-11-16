@@ -1,0 +1,59 @@
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+title: Insecure mode
+description: >- # this means to ignore newlines until "baseurl:"
+  Programming bits, big and small
+baseurl: "" # the subpath of your site, e.g. /blog
+url: ""
+show_excerpts: true
+
+author: Karolina Drobnik
+github_username: drobnik
+
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-archives
+  - jekyll-redirect-from
+
+pagination:
+  enabled: true
+  per_page: 5
+  sort_reverse: true
+  permalink: '/page/:num/'
+
+collections:
+tags:
+  output: true
+  permalink: tags/:path/
+
+jekyll-archives:
+  enabled: [year, month]
+  permalinks:
+    year: '/post/:year/'
+    month: 'post/:year/:month/'
+  layouts:
+    year: year_archive
+    month: month_archive
+
+# Tag pages
+tag_page_layout: tag_page
+tag_page_dir: tag
+tag_permalink_style: pretty
+
+# Exclude from processing.
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

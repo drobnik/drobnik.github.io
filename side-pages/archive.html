@@ -1,0 +1,37 @@
+---
+layout: page
+ignore-nav: true
+title: All posts
+
+permalink: /all-posts
+redirect_from: /archive
+---
+
+<div class="archive">
+{% for post in site.posts %}
+    {% capture year_of_current_post %}
+        {{ post.date | date: "%Y" }}
+    {% endcapture %}
+
+    {% capture year_of_previous_post_in_set %}
+        {{ post.previous.date | date: "%Y" }}
+    {% endcapture %}
+
+    {% if forloop.first %}
+        <h2 class="year-heading">{{ year_of_current_post }}</h2>
+        <ul>
+    {% endif %}
+        <li><a href="{{ post.url }}"><span class="archive-date">{{ post.date | date_to_string }}</span> {{ post.title }}</a></li>
+
+    {% if forloop.last %}
+        </ul>
+    {% else %}
+        {% if year_of_current_post != year_of_previous_post_in_set %}
+        </ul>
+
+        <h2 class="year-heading">{{ year_of_previous_post_in_set }}</h2>
+        <ul>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+</div>

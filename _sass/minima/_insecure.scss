@@ -1,0 +1,302 @@
+::selection {
+    background: $hover-color;
+}
+
+.rss-subscribe .svg-icon {
+    padding-left: 2px;
+    padding-right: 1px;
+}
+
+.rss-subscribe {
+  margin-top: $spacing-unit;
+  text-align: center;
+}
+
+.background {
+  background-color: $background-color;
+  display: inline-block;
+}
+
+.post-title a:hover{
+    background-color: $hover-color;
+    text-decoration: none;
+}
+
+a.more {
+    @include relative-font-size(1.1);
+    font-weight:lighter;
+    color: $grey-color-light;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: none;
+      color: $white;
+    }
+}
+
+.post-links {
+  padding-top: $spacing-unit * 0.55;
+  margin-bottom: 6px;
+  padding-left: $spacing-unit * 0.05;
+  padding-right: $spacing-unit * 0.05;
+  @extend %clearfix;
+
+  > li {
+    display: inline;
+    .newer {
+      float: left;
+
+      &:hover{
+        background-color: $hover-color;
+        text-decoration: none;
+      }
+    }
+
+    .older {
+      float: right;
+
+      &:hover{
+        background-color: $hover-color;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.tags {
+  @include relative-font-size(0.96);
+  margin-bottom: 0px;
+  padding-top: $spacing-unit * 0.4;
+  border-top: 1px solid $grey-color;
+  
+  > ul {
+    list-style: none;
+    display: inline;
+    margin-left: $spacing-unit * 0.15;
+
+    > li {
+      display: inline-block;
+    
+      &:not(:last-child){
+        margin-right: 10px;
+      }
+    }
+  }
+
+  > p {
+    color: $text-color;
+    display: inline;
+  }
+}
+
+.excerpt {
+  line-height: $base-line-height;
+}
+
+.disclaimer {
+  padding-top: $spacing-unit * 0.05;
+  text-align: center;
+  width: 70%;
+  margin: auto;
+}
+
+.paginator {
+  padding-left: $spacing-unit * 0.05;
+  padding-right: $spacing-unit * 0.05;
+  margin-top: $spacing-unit * 0.1;
+  
+  > li {
+    display: inline;
+
+    .newer {
+      float: left;
+    }
+
+    .older {
+      float: right;
+    }
+  }
+}
+
+ul.paginator {
+  margin-left: 0px;
+}
+
+hr {
+  width:50%;
+  margin:0 auto;
+  color: $grey-color;
+
+  margin-top: $spacing-unit;
+  margin-bottom: $spacing-unit;
+}
+
+.about-nav {
+  text-align: center;
+  margin-bottom: $spacing-unit * 0.3;
+
+  > ul {
+    list-style: none;
+    margin-left: 0px;
+  }
+
+  li {
+    display: inline;
+
+    > a {
+      color: $white;
+    }
+
+    > a:hover {
+      background-color: $hover-color;
+    }
+  }
+
+  li:first-child {
+    padding-right: 10px;
+  }
+
+  li:last-child {
+    padding-left: 10px;
+  }
+
+  li.selected {
+    font-weight: bolder;
+    color: $grey-color-light;
+  }
+}
+
+.avatar {
+  margin-bottom: $spacing-unit * 0.4;
+  margin-right: $spacing-unit;
+}
+
+#faq {
+  text-align: center;
+  margin-bottom: 0px;
+  color: $white;
+}
+
+#text {
+  width: 70%;
+}
+
+ul.question-dropdowns {
+  list-style: none;
+  margin-left: 0px;
+}
+
+.inlined {
+  display: inline;
+}
+
+.questions {
+  margin-bottom: $spacing-unit * 0.5;
+
+  > summary {
+    color: $white;
+    cursor: pointer;
+  }
+
+  > p {
+    margin-top: $spacing-unit * 0.2;
+  }
+
+  .answer-wrapper {
+    margin-left: $spacing-unit * 0.6;
+  }
+}
+
+h2.year-heading {
+  @include relative-font-size(1.32);
+  color: $white;
+  font-family: $monospace-font-family;
+}
+
+.archive {
+  > ul {
+    list-style: none;
+    margin-left: 0px;
+
+    > li:hover {
+      background-color: $hover-color;
+    }
+
+    .archive-date {
+      color: $grey-color;
+    }
+
+    a {
+      text-decoration: none;
+      color: $white;
+    }
+  }
+}
+
+a.date-link {
+  color: $grey-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $grey-color-light;
+  }
+}
+
+#about{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+// Margin helpers
+.clear-margins {
+    margin: unset;
+}
+
+.top-half-margin {
+    margin-top: $spacing-unit * 0.5;
+}
+
+.no-bottom-margin {
+  > section {
+    > h3 {
+      margin-bottom: 0px;
+      color: $grey-color-light;
+    }
+  }
+}
+
+.credits {
+  > section {
+    &:not(:last-child){
+      margin-bottom: $spacing-unit;
+    }
+
+    > figure {
+      width: 70%;
+      margin: auto;
+
+      > figcaption {
+        text-align: center;
+      }
+    }
+  }
+}
+// Menu
+a.blog {
+  color: $red;
+}
+
+a.about {
+  color: $yellow;
+  //color: $orange;
+}
+
+a.projects {
+  color: $yellow;
+}
+
+.title {
+  color: $white;
+}
