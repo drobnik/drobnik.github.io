@@ -26,7 +26,7 @@ layout: default
         <span class="post-meta">{{ post.date | date: date_format }}</span>
         <div class="top-half-margin">
           <p class="excerpt">
-            {{ post.excerpt }}
+            {{ post.excerpt | truncatewords: 50, "..."}}
             <a class="more" href="{{ post.url | relative_url }}">➔</a>
 
           </p>
