@@ -221,9 +221,6 @@ a.site-title {
   border: 1px solid $grey-color;
 }
 
-
-
-
 .post-list {
   margin-left: 0;
   list-style: none;
@@ -274,16 +271,16 @@ a.post-link {
  */
 
 .post {
-  padding-top: $spacing-unit * 0.7;
-  padding-left: $spacing-unit * 1.1;
+  padding: $spacing-unit * 0.4;
+  padding-left: $spacing-unit * 1.22;
   padding-right: $spacing-unit * 1.1;
-  padding-bottom: $spacing-unit * 0.1;
-  top: $spacing-unit * 0.5;
+  padding-bottom: $spacing-unit * 0.4;
+  padding-top: $spacing-unit * 0.68;
+  
   border: 1px solid $grey-color;
 }
 
 .post-header {
-  margin-bottom: $spacing-unit * 0.7;
   color: $white;
 }
 
@@ -292,8 +289,8 @@ a.post-link {
   font-family: $monospace-font-family;
   letter-spacing: -1px;
   line-height: 1;
-  margin-top: $spacing-unit * 0.6;
-  margin-bottom: 0px;
+  margin-top: $spacing-unit * 0.5;
+  margin-bottom: 3px;
 
   @include media-query($on-laptop) {
     @include relative-font-size(1.5);

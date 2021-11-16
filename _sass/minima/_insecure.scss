@@ -233,15 +233,6 @@ h2.year-heading {
   }
 }
 
-a.date-link {
-  color: $grey-color;
-  text-decoration: none;
-
-  &:hover {
-    color: $grey-color-light;
-  }
-}
-
 #about{
   display: flex;
   flex-direction: row;

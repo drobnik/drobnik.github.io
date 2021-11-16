@@ -9,6 +9,7 @@ layout: default
     <span>]</span>
   </div>
 </h2>
+
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
@@ -16,7 +17,7 @@ layout: default
     <p class="post-meta">
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <a class="date-link" href="/post/{{ page.date | date: "%Y/%m" }}">{{ page.date | date: date_format }}</a>
+        <span>{{ page.date | date: date_format }}</span>
       </time>
     </p>
   </header>
