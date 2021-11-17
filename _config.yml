@@ -10,6 +10,8 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: ""
 show_excerpts: true
+locale: en_GB
+image: assets/img/socialpreview.jpg
 
 author: Karolina Drobnik
 github_username: drobnik
