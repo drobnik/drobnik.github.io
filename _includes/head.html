@@ -5,15 +5,6 @@
   {%- include fav-icon.html -%}
   {%- seo -%}
 
-  {% if page.image %}
-    <meta property="og:image" content="assets/img/posts/{{ page.image }}">
-    <meta name="twitter:image" content="assets/img/posts/{{ page.image }}">
-  {% else %}
-    <meta property="og:image" content="assets/img/socialpreview.jpg">
-    <meta name="twitter:image" content="assets/img/socialpreview.jpg">
-  {% endif %}
-  <meta name="twitter:card" content="summary_large_image">
-
   <link rel="stylesheet" href="{{ '/assets/css/fira_code.css' | relative_url }}">
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   {%- feed_meta -%}
