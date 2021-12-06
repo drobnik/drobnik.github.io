@@ -1,7 +1,8 @@
-- question: Why "insecure mode"?
-  answer: <p>A couple years ago, I stumbled upon this meme (yes, really):</p>
+- question: Why is this blog called "insecure mode"?
+  answer: <p>A couple years ago, I got lost in the Internet depths and stumbled upon this picture :</p>
   image_url: media/img/inspirational-meme.jpg
-  postanswer: <p class="top-half-margin">It's relatable and hints at low-level stuff, a perfect combination
-              for my blog name. For curious folks - this is shim's console output
+  postanswer: <p class="top-half-margin">Well, it's pretty relatable and hints at low-level stuff, which,
+              I thought, is a perfect combination for my blog name.
+              For curious folks - this is shim's message that can be seen
               when SecureBoot is disabled, 
               <a href="https://github.com/rhboot/shim/blob/main/shim.c#L1592">source code</a>.</p>
