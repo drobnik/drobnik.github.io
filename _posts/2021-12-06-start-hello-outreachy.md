@@ -3,7 +3,7 @@ layout: post
 title:  "__start: Hello Outreachy!"
 date:   2021-12-06 13:03:07 +0100
 categories: post
-tags: general hello-world
+tags: general hello-world outreachy
 image: assets/img/socialpreview.jpg
 ---
 

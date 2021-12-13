@@ -43,6 +43,7 @@ ul, ol, dl, figure
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $monospace-font-family;
+  color: $white;
 }
 
 
@@ -61,6 +62,8 @@ main {
 img {
   max-width: 100%;
   vertical-align: middle;
+  margin: 0 auto;
+  display: block;
 }
 
 

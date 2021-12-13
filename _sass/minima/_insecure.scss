@@ -166,6 +166,11 @@ hr {
   }
 }
 
+strong {
+  font-weight: bold;
+  color: $grey-color-light;
+}
+
 .avatar {
   margin-right: $spacing-unit;
   max-width: 150px;

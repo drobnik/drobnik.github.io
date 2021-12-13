@@ -1,6 +1,6 @@
 ---
 layout: tag_page
-title: "Tag: linux"
+title: "Tag: Linux"
 tag: linux
 ignore-nav: true
 ---
