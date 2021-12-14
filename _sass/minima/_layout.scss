@@ -300,6 +300,10 @@ a.post-link {
 .post-content {
   margin-bottom: $spacing-unit;
 
+  ul {
+    margin-top: -$spacing-unit * 0.2;
+  }
+
   h1 {
     @include relative-font-size(2);
 

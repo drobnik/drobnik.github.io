@@ -89,6 +89,10 @@ ul, ol {
 }
 
 li {
+  &:not(:last-child){
+    margin-bottom: $spacing-unit * 0.27;
+  }
+
   > ul,
   > ol {
     margin-bottom: 0;

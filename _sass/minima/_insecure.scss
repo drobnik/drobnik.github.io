@@ -122,6 +122,17 @@ ul.paginator {
   margin-left: 0px;
 }
 
+ul.footnotes {
+  list-style: none;
+  margin-left: 0;
+
+  >li {
+    &:not(:last-child){
+      margin-bottom: $spacing-unit * 0.3;
+    }
+  }
+}
+
 hr {
   width:50%;
   margin:0 auto;
