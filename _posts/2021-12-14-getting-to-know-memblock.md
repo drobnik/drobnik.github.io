@@ -23,15 +23,15 @@ There are many features offered by memblock:
 
 The memory is modelled as a collection of blocks that are either free or allocated. They are stored in the main structure called `memblock` as two `memblock_type` members: `memory` and `reserved`. It is also possible to define a collection of memory regions that ignores all the flags and shows the whole available physical memory – `physmem`. This structure is initialized if [`CONFIG_HAVE_MEMBLOCK_PHYS_MAP`](https://elixir.bootlin.com/linux/latest/source/mm/Kconfig#L92) flag is defined. It is a pretty small array – it can store only 4 entries. In addition to this, the `memblock` structure keeps information on the allocation direction `bottom_up` and physical address of the current memory allocation limit `current_limit`:
 
-![memblock structure diagram]({{site.url}}/media/img/memblock/memblock_struct.png)
+<img src="{{site.url}}/media/img/memblock/memblock_struct.png" alt="the main memblock structure diagram">
 
 In the memblock world, chunks of memory visible to the kernel are called **regions**. A collection of `memblock_region`s is wrapped by the `memblock_type` structure. `regions` is a static array that can store 128 entries that can be resized if needed. Other information available in this structure is the combined size of the regions `total_size`, symbolic name set during initialization `name` and the number of memory blocks it currently stores `cnt`:
 
-![memblock type structure diagram]({{site.url}}/media/img/memblock/memblock_type.png)
+<img src="{{site.url}}/media/img/memblock/memblock_type.png" alt="memblock type structure diagram">
 
 The already mentioned structure, `memory_region`, is another wrapper that has all the information about memory region – the base physical address `base`, size of the region `size`, region attributes `flags` and, if NUMA nodes are used, a node ID `nid`:
 
-![memblock region structure diagram]({{site.url}}/media/img/memblock/memblock_region.png)
+<img src="{{site.url}}/media/img/memblock/memblock_region.png" alt="memblock region structure diagram">
 
 The region attributes are used to mark if a memory block should be treated in a particular way or not. The available flags are:
 - `MEMBLOCK_NONE` – “normal” memory region
@@ -41,7 +41,7 @@ The region attributes are used to mark if a memory block should be treated in a 
 
 So, the general memblock structure can be visualized like this:
 
-![all memblock structures diagram]({{site.url}}/media/img/memblock/memblocks.png)
+<img src="{{site.url}}/media/img/memblock/memblocks.png" alt="diagram showing how all structures are embedded in themselves">
 
 
 # Initialization
@@ -88,7 +88,7 @@ The number of available and reserved regions is defined by these macros:
 
 If we were to take a look at the disassembled Linux image `vmlinuz` that discards memblock after boot time and has memory hotplugging enabled, we can see an initialized memblock structure in `.meminit.data` section:
 
-![decompiled vmlinuz screenshot]({{site.url}}/media/img/memblock/memblock_section.png)
+<img src="{{site.url}}/media/img/memblock/memblock_section.png" alt="view of the disassembled vmlinuz with a memblock structure">
 
 
 # Features
