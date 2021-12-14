@@ -8,7 +8,7 @@ title: Insecure mode
 description: >- # this means to ignore newlines until "baseurl:"
   Programming bits, big and small
 baseurl: "" # the subpath of your site, e.g. /blog
-url: drobnik.github.io
+url: https://insecuremode.com
 show_excerpts: true
 locale: en_GB
 
