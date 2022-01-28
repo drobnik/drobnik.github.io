@@ -239,7 +239,7 @@ a.site-title {
     &:not(:first-child) {
       margin-top: $spacing-unit * 1.1;
     }
-    
+
     &:not(:last-child) {
       border-bottom: 1px solid $grey-color; //add some decorations
     }
@@ -276,7 +276,7 @@ a.post-link {
   padding-right: $spacing-unit * 1.1;
   padding-bottom: $spacing-unit * 0.4;
   padding-top: $spacing-unit * 0.68;
-  
+
   border: 1px solid $grey-color;
 }
 
@@ -298,6 +298,9 @@ a.post-link {
 }
 
 .post-content {
+  text-align: justify;
+  text-justify: inter-word;
+
   margin-bottom: $spacing-unit;
 
   ul {
