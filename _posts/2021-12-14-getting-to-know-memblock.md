@@ -9,7 +9,7 @@ image: assets/img/socialpreview.jpg
 
 Less than five seconds – that’s how long you need to wait to get your Linux kernel up and running. But it’s hardly an idle time for Linux – the system has to process configuration, perform architecture-specific setups and initialize many subsystems.
 
-One of such subsystems is memory allocation. In order to prepare it, the kernel needs to have an allocated chunk of memory. But how can we manage memory if we have no memory allocator? We have a chicken and egg situation, but there’s a solution – use a structure that is initialized at build time called **memblock**. It’s a specialized mechanism that allows Linux to manage memory regions during the early boot phase, before the usual memory allocators are initialized in [`mm_init()`](https://elixir.bootlin.com/linux/latest/source/init/main.c#L991).
+One of such subsystems is memory allocation. In order to prepare it, the kernel needs to have an allocated chunk of memory. But how can we manage memory if we have no memory allocator? We have a chicken and egg situation, but there’s a solution – use a structure that is initialized at build time called **memblock**. It’s a specialized mechanism that allows Linux to manage memory regions during the early boot phase, before the usual memory allocators are initialized in [`mm_init()`](https://elixir.bootlin.com/linux/v5.18.3/source/init/main.c#L986).
 
 There are many features offered by memblock:
 - Registering physical memory regions
@@ -21,7 +21,7 @@ There are many features offered by memblock:
 
 # Structures
 
-The memory is modelled as a collection of blocks that are either free or allocated. They are stored in the main structure called `memblock` as two `memblock_type` members: `memory` and `reserved`. It is also possible to define a collection of memory regions that ignores all the flags and shows the whole available physical memory – `physmem`. This structure is initialized if [`CONFIG_HAVE_MEMBLOCK_PHYS_MAP`](https://elixir.bootlin.com/linux/latest/source/mm/Kconfig#L92) flag is defined. It is a pretty small array – it can store only 4 entries. In addition to this, the `memblock` structure keeps information on the allocation direction `bottom_up` and physical address of the current memory allocation limit `current_limit`:
+The memory is modelled as a collection of blocks that are either free or allocated. They are stored in the main structure called `memblock` as two `memblock_type` members: `memory` and `reserved`. It is also possible to define a collection of memory regions that ignores all the flags and shows the whole available physical memory – `physmem`. This structure is initialized if [`CONFIG_HAVE_MEMBLOCK_PHYS_MAP`](https://elixir.bootlin.com/linux/v5.18.3/source/mm/Kconfig#L92) flag is defined. It is a pretty small array – it can store only 4 entries. In addition to this, the `memblock` structure keeps information on the allocation direction `bottom_up` and physical address of the current memory allocation limit `current_limit`:
 
 <img src="{{site.url}}/media/img/memblock/memblock_struct.png" alt="the main memblock structure diagram">
 
@@ -64,9 +64,9 @@ struct memblock memblock __initdata_memblock = {
 };
 {% endhighlight %}
 
-[`__initdata_memblock`](https://elixir.bootlin.com/linux/latest/source/include/linux/memblock.h#L94) is a macro that,
-depending on [`CONFIG_ARCH_KEEP_MEMBLOCK`](https://elixir.bootlin.com/linux/latest/source/mm/Kconfig#L102) and
-[`CONFIG_MEMORY_HOTPLUG`](https://elixir.bootlin.com/linux/latest/source/mm/Kconfig#L123) flags, embeds <span id="back-1">(or
+[`__initdata_memblock`](https://elixir.bootlin.com/linux/v5.18.3/source/include/linux/memblock.h#L101) is a macro that,
+depending on [`CONFIG_ARCH_KEEP_MEMBLOCK`](https://elixir.bootlin.com/linux/v5.18.3/source/mm/Kconfig#L102) and
+[`CONFIG_MEMORY_HOTPLUG`](https://elixir.bootlin.com/linux/v5.18.3/source/mm/Kconfig#L130) flags, embeds <span id="back-1">(or
 not [<a href="#foot-1">1</a>])</span> the memblock structure in an appropriate data section. As a statically initialized structure,
 memblock is available since the very beginning, together with the region arrays, which are initialized as following:
 
@@ -93,7 +93,7 @@ If we were to take a look at the disassembled Linux image `vmlinuz` that discard
 
 # Features
 
-Let’s say you’ve taken a heroic effort to add Linux support for a new architecture, and now you need to implement your own version of `setup_arch()`. There are many, many things you need to take care of, one of them being memory initialization. You might want to hide some areas of the memory that contain kernel, boot parameters or RAM disk image. Or maybe you wish to allocate some memory for logging purposes. 
+Let’s say you’ve taken a heroic effort to add Linux support for a new architecture, and now you need to implement your own version of `setup_arch()`. There are many, many things you need to take care of, one of them being memory initialization. You might want to hide some areas of the memory that contain kernel, boot parameters or RAM disk image. Or maybe you wish to allocate some memory for logging purposes.
 
 Whatever action you want to take, memblock can help you with a myriad of functions it offers. We can split them into four groups:
 - **Basic memory management** – a group of functions that allow to mark particular regions as available, reserved or “hidden”
@@ -112,7 +112,7 @@ The basic features of memblock revolve around managing memory regions. Given you
 
 
 ## Memory allocation
-Memory allocation is the core functionality of memblock. It allows you to request a chunk of memory and specify its various parameters: size, alignment, start and end addresses and NUMA node's ID. The memory allocation functions prioritize granting memory over satisfying the constraints specified by a programmer. For example, if we want to allocate a range of addresses in a specific NUMA node, which is unavailable at the time, memblock will try to allocate memory in a different node within the provided range. If it still doesn’t work, it’ll drop the lower memory limit and return the address to the allocated memory. 
+Memory allocation is the core functionality of memblock. It allows you to request a chunk of memory and specify its various parameters: size, alignment, start and end addresses and NUMA node's ID. The memory allocation functions prioritize granting memory over satisfying the constraints specified by a programmer. For example, if we want to allocate a range of addresses in a specific NUMA node, which is unavailable at the time, memblock will try to allocate memory in a different node within the provided range. If it still doesn’t work, it’ll drop the lower memory limit and return the address to the allocated memory.
 
 
 There are two kinds of memory allocation functions: such that return **physical addresses** (`memblock_phys_alloc…`) and **virtual addresses** (`memblock_alloc...`).
@@ -153,18 +153,18 @@ This is the biggest group that includes functions that change the memblock param
 - **memblock_allow_resize()** – enables resizing of `memblock.memory` and `memblock.reserved` arrays, so they can contain more than 128 entries
 - **memblock_end_of_DRAM()** – returns the end address of the last available memory region, i.e. the end of memory
 
-For the complete list of helpers, and some internal functions, see [memblock.c file](https://elixir.bootlin.com/linux/latest/source/mm/memblock.c#L1618), lines 1618 – 1909.
+For the complete list of helpers, and some internal functions, see [memblock.c file](https://elixir.bootlin.com/linux/v5.18.3/source/mm/memblock.c#L1634), lines 1634 – 1928.
 
 
 # Finale
 
-Once the usual memory allocators are up and running, there’s no much work left for memblock. The last thing it has to do is to release memory to the page allocator. In order to do so, [`start_kernel`](https://elixir.bootlin.com/linux/latest/source/init/main.c#L933) calls [`mm_init`](https://elixir.bootlin.com/linux/latest/source/init/main.c#L991), which calls [`memblock_free_all`](https://elixir.bootlin.com/linux/latest/source/mm/memblock.c#L2096) function down the line. This function traverses the whole memory and frees reserved regions, so they can be used in the “normal” memory allocation.
+Once the usual memory allocators are up and running, there’s no much work left for memblock. The last thing it has to do is to release memory to the page allocator. In order to do so, [`start_kernel`](https://elixir.bootlin.com/linux/v5.18.3/source/init/main.c#L928) calls [`mm_init`](https://elixir.bootlin.com/linux/v5.18.3/source/init/main.c#L986), which calls [`memblock_free_all`](https://elixir.bootlin.com/linux/v5.18.3/source/mm/memblock.c#L2109) function down the line. This function traverses the whole memory and frees reserved regions, so they can be used in the “normal” memory allocation.
 
-The memblock structures, like many other boot-time specific structures, stay in the memory until the system initialization finishes. To clean them up, [`start_kernel`](https://elixir.bootlin.com/linux/latest/source/init/main.c#L933) calls
-[`arch_call_rest_init`](https://elixir.bootlin.com/linux/latest/source/init/main.c#L1144), which, among other things, frees the memory occupied by the boot configuration and mentioned structures. Freeing memblock is achieved by
-calling [`memblock_discard`](https://elixir.bootlin.com/linux/latest/source/mm/memblock.c#L361) function in 
-[`page_alloc_init_late`](https://elixir.bootlin.com/linux/latest/source/mm/page_alloc.c#L2234).
-Still, some  architectures, like ARM64 or PowerPC, decide to keep memblock after early boot <span id="back-2">[<a href="#foot-2">2</a>]</span>. To override the default behaviour, they set [`CONFIG_ARCH_KEEP_MEMBLOCK`](https://elixir.bootlin.com/linux/latest/source/mm/Kconfig#L102) flag to true, so the `memblock_discard` call [doesn’t do anything](https://elixir.bootlin.com/linux/latest/source/include/linux/memblock.h#L99) and the memblock private memory stays intact.
+The memblock structures, like many other boot-time specific structures, stay in the memory until the system initialization finishes. To clean them up, [`start_kernel`](https://elixir.bootlin.com/linux/v5.18.3/source/init/main.c#L928) calls
+[`arch_call_rest_init`](https://elixir.bootlin.com/linux/v5.18.3/source/init/main.c#L1137), which, among other things, frees the memory occupied by the boot configuration and mentioned structures. Freeing memblock is achieved by
+calling [`memblock_discard`](https://elixir.bootlin.com/linux/v5.18.3/source/mm/memblock.c#L361) function in
+[`page_alloc_init_late`](https://elixir.bootlin.com/linux/v5.18.3/source/mm/page_alloc.c#L2177).
+Still, some  architectures, like ARM64 or PowerPC, decide to keep memblock after early boot <span id="back-2">[<a href="#foot-2">2</a>]</span>. To override the default behaviour, they set [`CONFIG_ARCH_KEEP_MEMBLOCK`](https://elixir.bootlin.com/linux/v5.18.3/source/mm/Kconfig#L102) flag to true, so the `memblock_discard` call [doesn’t do anything](https://elixir.bootlin.com/linux/v5.18.3/source/include/linux/memblock.h#L100) and the memblock private memory stays intact.
 
 
 # Summary
@@ -178,7 +178,7 @@ Little was said about what’s going on behind the scenes of `memblock_alloc` fu
 1. [Boot time memory management – The Linux Kernel documentation](https://www.kernel.org/doc/html/latest/core-api/boot-time-mm.html)
 2. 🎥 [Boot Time Memory Management, OSS EU 2020](https://www.youtube.com/watch?v=NP7wU7A218k)
 3. 🎥 [Consolidating representations of the physical memory, LPC 2021](https://youtu.be/pQ_Goasu3jM?t=725)
-4. Memblock implementation – [source](https://elixir.bootlin.com/linux/latest/source/mm/memblock.c), [header](https://elixir.bootlin.com/linux/latest/source/include/linux/memblock.h)
+4. Memblock implementation – [source](https://elixir.bootlin.com/linux/v5.18.3/source/mm/memblock.c), [header](https://elixir.bootlin.com/linux/v5.18.3/source/include/linux/memblock.h)
 
 
 # Credits
@@ -190,21 +190,21 @@ I used IDA Free to disassemble the Linux image.
 <ul class="footnotes">
 <li>
     <div id="foot-1">
-    [1] – For example, <code class="language-plaintext highlighter-rouge">__initdata_memblock</code> is an empty define if 
+    [1] – For example, <code class="language-plaintext highlighter-rouge">__initdata_memblock</code> is an empty define if
     <code class="language-plaintext highlighter-rouge">CONFIG_ARCH_KEEP
-    _MEMBLOCK</code> is set 
+    _MEMBLOCK</code> is set
     <a href="#back-1">⤴</a>
     </div>
 </li>
 
 <li>
     <div id="foot-2">
-    [2] – <a href="https://elixir.bootlin.com/linux/latest/source/arch/arm/mm/init.c#L125">ARM</a>
-    and <a href="https://elixir.bootlin.com/linux/latest/source/arch/arm64/mm/init.c#L163">ARM64</a> implementations of 
-    <code class="language-plaintext highlighter-rouge">pfn_valid</code> and 
-    <a href="https://elixir.bootlin.com/linux/latest/source/arch/powerpc/kexec/core.c">
+    [2] – <a href="https://elixir.bootlin.com/linux/v5.18.3/source/arch/arm/mm/init.c#L125">ARM</a>
+    and <a href="https://elixir.bootlin.com/linux/v5.18.3/source/arch/arm64/mm/init.c#L184">ARM64</a> implementations of
+    <code class="language-plaintext highlighter-rouge">pfn_valid</code> and
+    <a href="https://elixir.bootlin.com/linux/v5.18.3/source/arch/powerpc/kexec/core.c">
         PowerPC’s <code class="language-plaintext highlighter-rouge">kexec</code>
-    </a> rely on representation of 
+    </a> rely on representation of
     the physical memory provided by memblock <a href="#back-2">⤴</a>
     </div>
 </li>
