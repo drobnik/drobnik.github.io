@@ -12,10 +12,13 @@ url: https://insecuremode.com
 show_excerpts: true
 locale: en_GB
 
-author: Karolina Drobnik
+author: Karolina Stolarek
 github_username: drobnik
-twitter_username: drobnik_k
+#twitter_username: drobnik_k
 linkedin_username: km-drobnik
+mastodon:
+  - username: drobnik
+    instance: hachyderm.io
 
 theme: minima
 plugins:
